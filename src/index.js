@@ -11,20 +11,36 @@ import UseEffectDemo from 'pages/hooks/UseEffectDemo'
 import UseCallBackDemo from 'pages/hooks/UseCallBackDemo'
 import UseMemoDemo from 'pages/hooks/UseMemoDemo'
 import UseRefDemo from 'pages/hooks/UseRefDemo'
+import { Provider } from 'react-redux'
+import { store } from './redux/configStore'
+import DemoAppChat from './pages/hooks/reduxhook/DemoAppChat'
+import Profile from './pages/Profile'
+import Detail from './pages/Detail'
+import Search from './pages/Search'
+import Register from './pages/Register'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="" element={<HomeTemplate />}>
-        <Route index element={<Home />} />
-        <Route path="login" element={<Login />} />
-        <Route path="usestate" element={<UseStateDemo />} />
-        <Route path="useeffect" element={<UseEffectDemo />} />
-        <Route path="usecallback" element={<UseCallBackDemo />} />
-        <Route path="usememo" element={<UseMemoDemo />} />
-        <Route path="useref" element={<UseRefDemo />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="" element={<HomeTemplate />}>
+          <Route index element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/usestate" element={<UseStateDemo />} />
+          <Route path="/useeffect" element={<UseEffectDemo />} />
+          <Route path="/usecallback" element={<UseCallBackDemo />} />
+          <Route path="/usememo" element={<UseMemoDemo />} />
+          <Route path="/useref" element={<UseRefDemo />} />
+          <Route path="/demochat" element={<DemoAppChat />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/detail">
+            <Route path=":id" element={<Detail />} />
+          </Route>
+          <Route path="/search" element={<Search />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Provider>
 )

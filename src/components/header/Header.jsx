@@ -1,7 +1,16 @@
+import { TOKEN, USER_LOGIN, clearStoreJSON } from '@/utils/config'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 export default function Header() {
+  const { userLogin } = useSelector((state) => state.userReducer)
+  const renderLoginLink = () => {
+    if (userLogin.email !== '') {
+      return '/profile'
+    }
+    return '/login'
+  }
   return (
     <nav className="nav p-3 bg-dark text-white">
       {/* Home */}
@@ -18,52 +27,19 @@ export default function Header() {
         className={({ isActive }) =>
           `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
         }
-        to={'/login'}
+        to={renderLoginLink()}
       >
-        Login
+        {userLogin.email ? `Hello! ${userLogin.email}` : 'Login'}
       </NavLink>
       <NavLink
         className={({ isActive }) =>
           `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
         }
-        to={'/usestate'}
+        to={'/register'}
       >
-        Use State
+        Register
       </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
-        }
-        to={'/useeffect'}
-      >
-        Use Effect
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
-        }
-        to={'/usecallback'}
-      >
-        Use CallBack
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
-        }
-        to={'/usememo'}
-      >
-        Use Memo
-      </NavLink>
-      <NavLink
-        className={({ isActive }) =>
-          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
-        }
-        to={'/useref'}
-      >
-        Use Ref
-      </NavLink>
-      {/* Dropdown Menu */}
-      {/* <div className="dropdown">
+      <div className="dropdown">
         <button
           className="nav-link text-white dropdown-toggle"
           type="button"
@@ -72,17 +48,76 @@ export default function Header() {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Redux
+          React Hook
         </button>
         <div className="dropdown-menu" aria-labelledby="triggerId">
-          <NavLink className="dropdown-item" to={'/api'}>
-            API State
+          <NavLink className="dropdown-item" to={'/usestate'}>
+            Use State
           </NavLink>
-          <NavLink className="dropdown-item" to={'/api-redux'}>
-            API - Redux State
+          <NavLink className="dropdown-item" to={'/useeffect'}>
+            Use Effect
+          </NavLink>
+          <NavLink className="dropdown-item" to={'/usecallback'}>
+            Use CallBack
+          </NavLink>
+          <NavLink className="dropdown-item" to={'/usememo'}>
+            Use Memo
+          </NavLink>
+          <NavLink className="dropdown-item" to={'/useref'}>
+            Use Ref
           </NavLink>
         </div>
-      </div> */}
+      </div>
+      <div className="dropdown">
+        <button
+          className="nav-link text-white dropdown-toggle"
+          type="button"
+          id="triggerId"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Redux Hook
+        </button>
+        <div className="dropdown-menu" aria-labelledby="triggerId">
+          <NavLink className="dropdown-item" to={'/demochat'}>
+            Use Selector - Use Dispatch
+          </NavLink>
+        </div>
+      </div>
+      <div className="dropdown">
+        <button
+          className="nav-link text-white dropdown-toggle"
+          type="button"
+          id="triggerId"
+          data-bs-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          React Router DOM Hook
+        </button>
+        <div className="dropdown-menu" aria-labelledby="triggerId">
+          <NavLink className="dropdown-item" to={'/detail/1'}>
+            Use Params
+          </NavLink>
+          <NavLink className="dropdown-item" to={'/search'}>
+            Use Search Params
+          </NavLink>
+        </div>
+      </div>
+      {userLogin.email && (
+        <button
+          className="mx-2 nav-link text-white ms-auto"
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            clearStoreJSON(USER_LOGIN)
+            clearStoreJSON(TOKEN)
+            window.location.reload()
+          }}
+        >
+          Log Out
+        </button>
+      )}
     </nav>
   )
 }
