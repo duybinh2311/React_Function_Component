@@ -18,7 +18,11 @@ import Profile from './pages/Profile'
 import Detail from './pages/Detail'
 import Search from './pages/Search'
 import Register from './pages/Register'
+import Movie from './pages/Movie'
+import { createBrowserHistory } from 'history'
 
+/* Cấu hình History */
+export const history = createBrowserHistory()
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>
@@ -35,6 +39,7 @@ root.render(
           <Route path="/useref" element={<UseRefDemo />} />
           <Route path="/demochat" element={<DemoAppChat />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/movie" element={<Movie />} />
           <Route path="/detail">
             <Route path=":id" element={<Detail />} />
           </Route>

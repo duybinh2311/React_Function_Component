@@ -1,12 +1,8 @@
 import { useFormik } from 'formik'
 import * as yup from 'yup'
-import React, { useRef } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import {
-  getProfileActionAPI,
-  loginActionAPI,
-  loginReducer,
-} from '@/redux/reducers/userReducer'
+import { loginActionAPI, loginReducer } from '@/redux/slices/userSlice'
 
 export default function Login() {
   const dispatch = useDispatch()

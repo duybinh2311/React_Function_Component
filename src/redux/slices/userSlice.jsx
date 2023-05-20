@@ -1,10 +1,11 @@
+import { history } from '@/index'
 import {
   TOKEN,
   USER_LOGIN,
   getStoreJSON,
   http,
   saveStoreJSON,
-} from '@/utils/config'
+} from '@/utils/configAxios'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
@@ -21,8 +22,8 @@ const initialState = {
   accessToken: getStoreJSON(TOKEN) || '',
 }
 
-const userReducer = createSlice({
-  name: 'userReducer',
+const userSlice = createSlice({
+  name: 'userSlice',
   initialState,
   reducers: {
     loginReducer: (state, action) => {
@@ -34,15 +35,17 @@ const userReducer = createSlice({
   },
 })
 
-export const { loginReducer, userProfileReducer } = userReducer.actions
+export const { loginReducer, userProfileReducer } = userSlice.actions
 
-export default userReducer.reducer
+export default userSlice.reducer
 
 export const loginActionAPI = async (userLogin) => {
   try {
     const result = await http.post('/api/Users/signin', userLogin)
     saveStoreJSON(USER_LOGIN, result.data.content)
     saveStoreJSON(TOKEN, result.data.content.accessToken)
+    history.push('/profile')
+    window.location.reload()
     return result.data.content
   } catch (error) {
     throw error
@@ -51,18 +54,9 @@ export const loginActionAPI = async (userLogin) => {
 
 export const getProfileActionAPI = async () => {
   try {
-    const accessToken = getStoreJSON(TOKEN)
-    const result = await http.post(
-      '/api/Users/getProfile',
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    )
+    const result = await http.post('/api/Users/getProfile')
     return result.data.content
   } catch (error) {
-    throw error
+    console.log(error)
   }
 }

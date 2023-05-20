@@ -1,7 +1,7 @@
 import {
   getProfileActionAPI,
   userProfileReducer,
-} from '@/redux/reducers/userReducer'
+} from '@/redux/slices/userSlice'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 

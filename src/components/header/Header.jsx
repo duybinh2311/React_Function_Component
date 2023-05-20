@@ -1,4 +1,4 @@
-import { TOKEN, USER_LOGIN, clearStoreJSON } from '@/utils/config'
+import { TOKEN, USER_LOGIN, clearStoreJSON } from '@/utils/configAxios'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
@@ -39,6 +39,7 @@ export default function Header() {
       >
         Register
       </NavLink>
+      {/* React Hook */}
       <div className="dropdown">
         <button
           className="nav-link text-white dropdown-toggle"
@@ -68,6 +69,7 @@ export default function Header() {
           </NavLink>
         </div>
       </div>
+      {/* Redux Hook */}
       <div className="dropdown">
         <button
           className="nav-link text-white dropdown-toggle"
@@ -85,6 +87,7 @@ export default function Header() {
           </NavLink>
         </div>
       </div>
+      {/* React Router DOM Hook */}
       <div className="dropdown">
         <button
           className="nav-link text-white dropdown-toggle"
@@ -105,6 +108,14 @@ export default function Header() {
           </NavLink>
         </div>
       </div>
+      <NavLink
+        className={({ isActive }) =>
+          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
+        }
+        to={'/movie'}
+      >
+        Movie
+      </NavLink>
       {userLogin.email && (
         <button
           className="mx-2 nav-link text-white ms-auto"

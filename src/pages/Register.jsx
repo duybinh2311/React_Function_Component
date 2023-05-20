@@ -3,7 +3,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 /* Validation với yup */
 import * as yup from 'yup'
-import { http } from '@/utils/config'
+import { http } from '@/utils/configAxios'
 import { useNavigate } from 'react-router-dom'
 
 export default function Register() {

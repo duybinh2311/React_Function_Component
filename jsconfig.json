@@ -8,7 +8,7 @@
       "templates/*": ["src/templates/*"],
       "assets/*": ["src/assets/*"],
       "store/*": ["src/redux/*"],
-      "reducers/*": ["src/redux/reducers/*"]
+      "slices/*": ["src/redux/slices/*"]
     }
   }
 }

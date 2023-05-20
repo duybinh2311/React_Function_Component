@@ -7,8 +7,8 @@ const initialState = {
   ],
 }
 
-const appChatReducer = createSlice({
-  name: 'appChatReducer',
+const appChatSlice = createSlice({
+  name: 'appChatSlice',
   initialState,
   reducers: {
     addCommentReducer: (state, action) => {
@@ -17,6 +17,6 @@ const appChatReducer = createSlice({
   },
 })
 
-export const { addCommentReducer } = appChatReducer.actions
+export const { addCommentReducer } = appChatSlice.actions
 
-export default appChatReducer.reducer
+export default appChatSlice.reducer

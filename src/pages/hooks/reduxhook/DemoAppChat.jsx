@@ -1,4 +1,4 @@
-import { addCommentReducer } from '@/redux/reducers/appChatReducer'
+import { addCommentReducer } from '@/redux/slices/appChatSlice'
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 

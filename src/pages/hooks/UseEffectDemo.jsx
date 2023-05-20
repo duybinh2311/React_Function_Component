@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { http } from '@/utils/configAxios'
 
 const UseEffectDemo = () => {
   const [number, setNumber] = useState(1)
@@ -9,7 +10,7 @@ const UseEffectDemo = () => {
   const [preIdProductDetail, setPreIdProductDetail] = useState(1)
   const getProductList = async () => {
     try {
-      const result = await axios.get('https://shop.cyberlearn.vn/api/Product')
+      const result = await http.get('https://shop.cyberlearn.vn/api/Product')
       return setArrProduct(result.data.content)
     } catch (error) {
       throw error
@@ -17,7 +18,7 @@ const UseEffectDemo = () => {
   }
   const getProductDetail = async () => {
     try {
-      const result = await axios.get(
+      const result = await http.get(
         `https://shop.cyberlearn.vn/api/Product/getbyid?id=${idProductDetail}`
       )
       return setProductDetail(result.data.content)
