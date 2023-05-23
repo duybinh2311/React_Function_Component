@@ -82,11 +82,6 @@ export default function Register() {
               }`}
               id="password"
               onChange={registerForm.handleChange}
-              // onInput={() => {
-              //   registerForm.resetForm({
-              //     errors: { ...registerForm.errors, password: '' },
-              //   })
-              // }}
             />
             {registerForm.errors.password && (
               <div className="invalid-feedback">
@@ -133,11 +128,6 @@ export default function Register() {
               }`}
               id="name"
               onChange={registerForm.handleChange}
-              // onInput={() => {
-              //   registerForm.resetForm({
-              //     errors: { ...registerForm.errors, name: '' },
-              //   })
-              // }}
             />
             {registerForm.errors.name && (
               <div className="invalid-feedback">{registerForm.errors.name}</div>
@@ -152,11 +142,6 @@ export default function Register() {
               }`}
               id="phone"
               onChange={registerForm.handleChange}
-              // onInput={() => {
-              //   registerForm.resetForm({
-              //     errors: { ...registerForm.errors, phone: '' },
-              //   })
-              // }}
             />
             {registerForm.errors.phone && (
               <div className="invalid-feedback">

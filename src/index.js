@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import 'antd/dist/reset.css'
+import './index.css'
 
 /* Cấu hình react router dom */
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
@@ -13,13 +15,15 @@ import UseMemoDemo from 'pages/hooks/UseMemoDemo'
 import UseRefDemo from 'pages/hooks/UseRefDemo'
 import { Provider } from 'react-redux'
 import { store } from './redux/configStore'
-import DemoAppChat from './pages/hooks/reduxhook/DemoAppChat'
-import Profile from './pages/Profile'
-import Detail from './pages/Detail'
-import Search from './pages/Search'
-import Register from './pages/Register'
-import Movie from './pages/Movie'
+import DemoAppChat from 'pages/hooks/reduxhook/DemoAppChat'
+import Profile from 'pages/Profile'
+import Detail from 'pages/Detail'
+import Search from 'pages/Search'
+import Register from 'pages/Register'
+import Movie from 'pages/Movie'
 import { createBrowserHistory } from 'history'
+import DemoAntd from 'pages/DemoAntd'
+import DemoHOC from 'pages/DemoHOC'
 
 /* Cấu hình History */
 export const history = createBrowserHistory()
@@ -40,6 +44,8 @@ root.render(
           <Route path="/demochat" element={<DemoAppChat />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/movie" element={<Movie />} />
+          <Route path="/demoant" element={<DemoAntd />} />
+          <Route path="/demohoc" element={<DemoHOC />} />
           <Route path="/detail">
             <Route path=":id" element={<Detail />} />
           </Route>

@@ -116,6 +116,22 @@ export default function Header() {
       >
         Movie
       </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
+        }
+        to={'/demoant'}
+      >
+        Ant Design
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `mx-2 nav-link ${isActive ? `text-black bg-white` : `text-white`}`
+        }
+        to={'/demohoc'}
+      >
+        HOC
+      </NavLink>
       {userLogin.email && (
         <button
           className="mx-2 nav-link text-white ms-auto"

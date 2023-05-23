@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { NavLink, Navigate, useParams } from 'react-router-dom'
+import { NavLink, Navigate, useLocation, useParams } from 'react-router-dom'
 
 export default function Detail() {
   const [productDetail, setProductDetail] = useState({})
