@@ -1,19 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-export default function HOCModal({ children }) {
+export default function ContainerModal() {
+  const { component } = useSelector((state) => state.modalSlice)
   return (
     <div>
-      {/* Modal trigger button */}
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#modalId"
-      >
-        Launch
-      </button>
-      {/* Modal Body */}
-      {/* if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard */}
       <div
         className="modal fade"
         id="modalId"
@@ -25,7 +16,7 @@ export default function HOCModal({ children }) {
         aria-hidden="true"
       >
         <div
-          className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+          className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"
           role="document"
         >
           <div className="modal-content">
@@ -40,7 +31,7 @@ export default function HOCModal({ children }) {
                 aria-label="Close"
               />
             </div>
-            <div className="modal-body">{children}</div>
+            <div className="modal-body">{component}</div>
             <div className="modal-footer">
               <button
                 type="button"

@@ -23,7 +23,8 @@ import Register from 'pages/Register'
 import Movie from 'pages/Movie'
 import { createBrowserHistory } from 'history'
 import DemoAntd from 'pages/DemoAntd'
-import DemoHOC from 'pages/DemoHOC'
+import DemoHOC from './pages/DemoHOC'
+import ContainerModal from './pages/ContainerModal'
 
 /* Cấu hình History */
 export const history = createBrowserHistory()
@@ -52,6 +53,7 @@ root.render(
           <Route path="/search" element={<Search />} />
         </Route>
       </Routes>
+      <ContainerModal />
     </BrowserRouter>
   </Provider>
 )

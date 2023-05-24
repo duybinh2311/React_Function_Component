@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import useFetchData from '@/custom_hook/useFetchData'
 import { NavLink } from 'react-router-dom'
 import Shuffle from 'shufflejs'
+import ResponsiveTemplate from '@/templates/ResponsiveTemplate'
+import Login from './Login'
+import Register from './Register'
 
 export default function Home() {
   const data = useFetchData('https://shop.cyberlearn.vn/api/product')
@@ -164,6 +167,7 @@ export default function Home() {
           )
         })}
       </div>
+      <ResponsiveTemplate component={Login} mobileComponent={Register} />
     </div>
   )
 }
