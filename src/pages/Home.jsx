@@ -5,9 +5,12 @@ import Shuffle from 'shufflejs'
 import ResponsiveTemplate from '@/templates/ResponsiveTemplate'
 import Login from './Login'
 import Register from './Register'
+import axios from 'axios'
+import { http } from '@/utils/configAxios'
+import { Grid } from '@mantine/core'
 
 export default function Home() {
-  const data = useFetchData('https://shop.cyberlearn.vn/api/product')
+  const [productList, setProductList] = useState(Array(4).fill())
   const [shuffle, setShuffle] = useState(null)
   const [filterKey, setFilterKey] = useState('*')
   const [sortValue, setSortValue] = useState(undefined)
@@ -46,6 +49,7 @@ export default function Home() {
         const dataFilter = item.getAttribute('data-filter')
         if (dataFilter === filterKey) return item
       })
+      console.log(shuffle)
     }
   }, [filterKey])
   useEffect(() => {
@@ -75,7 +79,15 @@ export default function Home() {
       shuffle.sort(options)
     }
   }, [sortValue])
-
+  useEffect(() => {
+    http.get('https://shop.cyberlearn.vn/api/product').then((result) => {
+      const dataConvert = result.data.content.map((product) => {
+        product.categories = JSON.parse(product.categories)
+        return product
+      })
+      setProductList(dataConvert)
+    })
+  }, [])
   return (
     <div className="container my-3">
       <h3 className="text-center mb-3">Shoes Shop</h3>
@@ -144,29 +156,30 @@ export default function Home() {
           Reset Sort
         </button>
       </div>
-      <div className="row g-3 filter-container" ref={shuffleRef}>
-        {data.map((item, index) => {
+      <Grid ref={shuffleRef}>
+        {productList.map((item, index) => {
           return (
-            <div
-              className={`col-3 filter-item ${item.categories[0].id}`}
+            <Grid.Col
+              span={3}
+              className="filter-item"
               key={index}
-              data-filter={`${item.categories[0].id}`}
-              data-price={item.price}
+              data-filter={`${item?.categories[0]?.id}`}
+              data-price={item?.price}
             >
               <div className="card">
-                <img src={item.image} className="w-100" />
+                <img src={item?.image} className="w-100" />
                 <div className="card-body">
-                  <h5 className="card-title">{item.name}</h5>
-                  <p className="card-text">{item.price}</p>
-                  <NavLink to={`/detail${item.id}`} className="btn btn-dark">
+                  <h5 className="card-title">{item?.name}</h5>
+                  <p className="card-text">{item?.price}</p>
+                  <NavLink to={`/detail${item?.id}`} className="btn btn-dark">
                     View Detail
                   </NavLink>
                 </div>
               </div>
-            </div>
+            </Grid.Col>
           )
         })}
-      </div>
+      </Grid>
       <ResponsiveTemplate component={Login} mobileComponent={Register} />
     </div>
   )

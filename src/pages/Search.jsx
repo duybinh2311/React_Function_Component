@@ -29,7 +29,6 @@ export default function Search() {
       getProductByKeyword(keyword.get('keys'))
     }
   }, [keyword.get('keys')])
-
   return (
     <div className="container">
       <h3>Tìm kiếm sản phẩm</h3>
